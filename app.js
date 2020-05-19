@@ -18,12 +18,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use((req, res, next) => {
-  User.findById('5eb5fae5f110751fce6fd676')
+  User.findById('5ec23e62d8e1a44da4d4324f')
     .then(user => {
       req.user = new User(user.username, user.email, user.cart, user._id);
       next();
     })
     .catch(err => console.log(err));
+    // next()
 });
 
 app.use('/admin', adminRoutes);
