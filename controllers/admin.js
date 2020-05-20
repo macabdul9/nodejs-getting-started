@@ -77,14 +77,14 @@ exports.postEditProduct = (req, res, next) => {
   // );
   Product.findById(prodId)
   .then(product =>{
-    product.title = updatedTitle;
+      product.title = updatedTitle;
       product.price = updatedPrice;
       product.description = updatedDescription;
       product.imageUrl = updatedImageUrl
       return product.save()
   })
   .then(result => {
-    console.log('UPDATED PRODUCT!');
+    console.log('PRODUCT UPDATED!');
     res.redirect('/admin/products');
   })
   .catch(err => console.log(err));
@@ -95,7 +95,7 @@ exports.getProducts = (req, res, next) => {
   Product.find() // select(title, price, imageUrl) to filters items
     // .populate('userId')
     .then(products => {
-      console.log(products);
+      // console.log(products);
       res.render('admin/products', {
         prods: products,
         pageTitle: 'Admin Products',
